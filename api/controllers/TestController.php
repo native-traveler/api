@@ -2,7 +2,6 @@
 
 namespace api\controllers;
 
-
 use Phalcon\Mvc\Controller;
 
 class TestController extends Controller
