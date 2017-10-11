@@ -6,7 +6,6 @@ use Phalcon\Mvc\Micro;
 use api\config\AppConfig;
 use api\config\AppFactory;
 
-
 try {
     $loader = new Loader();
     $loader->registerDirs(

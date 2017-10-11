@@ -2,7 +2,8 @@
 
 namespace api\config;
 
-use Phalcon\Db\Adapter\Pdo\Sqlite;
+
+use Phalcon\Db\Adapter\Pdo\Postgresql;
 use Phalcon\DI\FactoryDefault;
 use Phalcon\Security;
 use Phalcon\Http\Response\Cookies;
@@ -28,7 +29,13 @@ class AppFactory extends FactoryDefault
         $this->set(
             "db",
             function () {
-                return new Sqlite(['dbname' => __DIR__ . '/../../db/db.sqlite']);
+                return new Postgresql([
+                    "host"     => "localhost",
+                    "dbname"   => "blog",
+                    "port"     => 5432,
+                    "username" => "postgres",
+                    "password" => "12345",
+                ]);
             }
         );
     }

@@ -7,5 +7,6 @@ nbproject
 
 api/vendor
 api/composer.phar
+api/composer.lock
 
 docker-compose.yml

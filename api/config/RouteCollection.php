@@ -9,8 +9,8 @@ class RouteCollection
     public function defaultRoute()
     {
         $route = new Collection();
-        $route->setHandler('api\controllers\IndexController', true);
-        $route->setPrefix('/api-internal');
+        $route->setHandler('api\controllers\MainController', true);
+        $route->setPrefix('/');
         $route->get('/', 'index');
 
         return $route;
@@ -20,7 +20,7 @@ class RouteCollection
     {
         $route = new Collection();
         $route->setHandler('api\controllers\TestController', true);
-        $route->setPrefix('/api-internal/test');
+        $route->setPrefix('/test');
         $route->get('/', 'index');
 
         return $route;

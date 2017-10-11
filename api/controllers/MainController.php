@@ -5,7 +5,7 @@ namespace api\controllers;
 
 use api\components\base\BaseController;
 
-class IndexController extends BaseController
+class MainController extends BaseController
 {
     public function index()
     {

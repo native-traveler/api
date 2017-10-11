@@ -2,7 +2,6 @@
 
 namespace api\config;
 
-
 use Phalcon\Exception;
 use Phalcon\Mvc\Micro;
 
@@ -43,7 +42,7 @@ class AppConfig
         $routes = new RouteCollection();
 
         $this->_app->notFound(function () {
-            throw new \Phalcon\Http\Response\Exception('Страница ненайдена');
+            throw new \Phalcon\Http\Response\Exception('Страница не найдена');
         });
 
 
