@@ -1,0 +1,17 @@
+{
+    "name": "native-traveler/api",
+    "description": "api",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Aciden",
+            "email": "aciden@septempus.ru"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "require-dev": {
+        "phalcon/devtools": "*"
+    }
+}
