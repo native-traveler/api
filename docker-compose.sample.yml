@@ -23,5 +23,5 @@ postgres:
  ports:
   - 5432:5432
  environment:
-  POSTGRES_PASSWORD: <myPassword>
+  POSTGRES_PASSWORD: 12345
   POSTGRES_USER: postgres
