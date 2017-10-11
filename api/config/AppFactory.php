@@ -32,7 +32,7 @@ class AppFactory extends FactoryDefault
                 return new Postgresql([
                     "host"     => "localhost",
                     "dbname"   => "blog",
-                    "port"     => 5432,
+                    "port"     => 5435,
                     "username" => "postgres",
                     "password" => "12345",
                 ]);

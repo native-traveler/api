@@ -21,7 +21,7 @@ fpm:
 postgres:
  image: aciden/postgres-10.0
  ports:
-  - 5432:5432
+  - 5435:5432
  environment:
   POSTGRES_PASSWORD: 12345
   POSTGRES_USER: postgres
