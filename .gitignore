@@ -1,3 +1,11 @@
-# Created by .ignore support plugin (hsz.mobi)
+
+/.idea
+/.buildpath
+/.project
+/.settings
+/nbproject
+
+/api/vendor
+/api/composer.phar
 
 /docker-compose.yml
