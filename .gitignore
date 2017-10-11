@@ -1,11 +1,11 @@
 
-/.idea
-/.buildpath
-/.project
-/.settings
-/nbproject
+.idea
+.buildpath
+.project
+.settings
+nbproject
 
-/api/vendor
-/api/composer.phar
+api/vendor
+api/composer.phar
 
-/docker-compose.yml
+docker-compose.yml
