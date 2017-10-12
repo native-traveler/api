@@ -13,9 +13,14 @@ use Phalcon\Http\Response;
 
 class AppFactory extends FactoryDefault
 {
-    public function __construct()
+    private $_config;
+
+    public function __construct($config)
     {
         parent::__construct();
+
+        $this->_config = $config;
+
         $this->setDb();
         $this->setSecur();
         $this->setCrypt();
@@ -29,13 +34,8 @@ class AppFactory extends FactoryDefault
         $this->set(
             "db",
             function () {
-                return new Postgresql([
-                    "host"     => "localhost",
-                    "dbname"   => "blog",
-                    "port"     => 5435,
-                    "username" => "postgres",
-                    "password" => "12345",
-                ]);
+
+                return new Postgresql((array) $this->_config->database);
             }
         );
     }
@@ -55,43 +55,50 @@ class AppFactory extends FactoryDefault
 
     private function setSecur()
     {
-        $this->setShared('security', function(){
-            $security = new Security();
-            //Устанавливаем фактор хеширования в 12 раундов
-            $security->setWorkFactor(12);
+        $this->setShared(
+            'security',
+            function (){
+                $security = new Security();
+                $security->setWorkFactor(12);
 
-            return $security;
+                return $security;
         });
     }
 
     private function setCoockie()
     {
-        $this->set('cookies', function() {
-            $cookies = new Cookies();
-            $cookies->useEncryption(true);
+        $this->set(
+            'cookies',
+            function () {
+                $cookies = new Cookies();
+                $cookies->useEncryption(true);
 
-            return $cookies;
+                return $cookies;
         });
     }
 
     private function setCrypt()
     {
-        $this->set('crypt', function() {
-            $crypt = new Crypt();
-            $crypt->setMode(MCRYPT_MODE_CFB);
-            $crypt->setKey('vJ4RIGAGg6vJ9lAD'); // Используйте свой собственный ключ!
+        $this->set(
+            'crypt',
+            function () {
+                $crypt = new Crypt();
+                $crypt->setMode(MCRYPT_MODE_CFB);
+                $crypt->setKey('vJ4RIGAGg6vJ9lAD');
 
-            return $crypt;
+                return $crypt;
         });
     }
 
     private function setSession()
     {
-        $this->setShared('session', function() {
-            $session = new Files();
-            $session->start();
+        $this->setShared(
+            'session',
+            function () {
+                $session = new Files();
+                $session->start();
 
-            return $session;
+                return $session;
         });
     }
 }

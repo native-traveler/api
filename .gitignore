@@ -8,5 +8,8 @@ nbproject
 api/vendor
 api/composer.phar
 api/composer.lock
+api/config/config.local.ini
+api/.phalcon
 
 docker-compose.yml
+pha
