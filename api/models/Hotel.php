@@ -49,7 +49,6 @@ class Hotel extends BaseModel
      */
     public function initialize()
     {
-        $this->setSchema("public");
         $this->setSource("hotel");
         $this->belongsTo('city_id', '\City', 'id', ['alias' => 'City']);
         $this->belongsTo('status_id', '\Status', 'id', ['alias' => 'Status']);

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\components\base;
+namespace api\components\base;
 
 interface StatuseModelInterface
 {

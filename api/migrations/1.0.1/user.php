@@ -8,7 +8,7 @@ use Phalcon\Mvc\Model\Migration;
 /**
  * Class UserMigration_100
  */
-class UserMigration_100 extends Migration
+class UserMigration_101 extends Migration
 {
     /**
      * Define the table structure
@@ -23,7 +23,7 @@ class UserMigration_100 extends Migration
                         'id',
                         [
                             'type' => Column::TYPE_INTEGER,
-                            'notNull' => true,
+                            'primary' => true,
                             'autoIncrement' => true,
                             'first' => true
                         ]
@@ -50,7 +50,6 @@ class UserMigration_100 extends Migration
                         'status_id',
                         [
                             'type' => Column::TYPE_INTEGER,
-                            'notNull' => true,
                             'after' => 'password'
                         ]
                     ),
@@ -58,7 +57,6 @@ class UserMigration_100 extends Migration
                         'type_id',
                         [
                             'type' => Column::TYPE_INTEGER,
-                            'notNull' => true,
                             'after' => 'status_id'
                         ]
                     ),
@@ -89,18 +87,14 @@ class UserMigration_100 extends Migration
                         ]
                     )
                 ],
-                'indexes' => [
-                    new Index('user_pkey', ['id'], null)
-                ],
                 'references' => [
                     new Reference(
                         'user_2_status',
                         [
                             'referencedTable' => 'status',
-                            'referencedSchema' => 'public',
                             'columns' => ['status_id'],
                             'referencedColumns' => ['id'],
-                            'onUpdate' => 'SET NULL',
+                            'onUpdate' => 'CASCADE',
                             'onDelete' => 'SET NULL'
                         ]
                     ),
@@ -108,10 +102,9 @@ class UserMigration_100 extends Migration
                         'user_2_type',
                         [
                             'referencedTable' => 'type',
-                            'referencedSchema' => 'public',
                             'columns' => ['type_id'],
                             'referencedColumns' => ['id'],
-                            'onUpdate' => 'SET NULL',
+                            'onUpdate' => 'CASCADE',
                             'onDelete' => 'SET NULL'
                         ]
                     )

@@ -35,7 +35,10 @@ class AppFactory extends FactoryDefault
             "db",
             function () {
 
-                return new Postgresql((array) $this->_config->database);
+                $configDb = (array) $this->_config->database;
+                unset($configDb['adapter']);
+
+                return new Postgresql($configDb);
             }
         );
     }

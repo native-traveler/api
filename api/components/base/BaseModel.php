@@ -5,7 +5,7 @@ namespace api\components\base;
 use Phalcon\Mvc\Model;
 use Phalcon\Mvc\Model\Behavior\Timestampable;
 
-use app\components\base\StatuseModelInterface;
+use api\components\base\StatuseModelInterface;
 
 class BaseModel extends Model implements StatuseModelInterface
 {

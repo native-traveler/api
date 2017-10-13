@@ -23,7 +23,7 @@ class StatusMigration_100 extends Migration
                         'id',
                         [
                             'type' => Column::TYPE_INTEGER,
-                            'notNull' => true,
+                            'primary' => true,
                             'autoIncrement' => true,
                             'first' => true
                         ]
@@ -45,9 +45,6 @@ class StatusMigration_100 extends Migration
                         ]
                     )
                 ],
-                'indexes' => [
-                    new Index('status_pkey', ['id'], null)
-                ],
             ]
         );
     }
@@ -59,7 +56,7 @@ class StatusMigration_100 extends Migration
      */
     public function up()
     {
-
+        $this->batchInsert('status', ['name', 'title']);
     }
 
     /**

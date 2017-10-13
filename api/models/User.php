@@ -70,7 +70,6 @@ class User extends BaseModel
      */
     public function initialize()
     {
-        $this->setSchema("public");
         $this->setSource("user");
         $this->belongsTo('status_id', '\Status', 'id', ['alias' => 'Status']);
         $this->belongsTo('type_id', '\Type', 'id', ['alias' => 'Type']);

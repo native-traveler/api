@@ -6,9 +6,9 @@ use Phalcon\Db\Reference;
 use Phalcon\Mvc\Model\Migration;
 
 /**
- * Class CityMigration_100
+ * Class HotelMigration_100
  */
-class CityMigration_100 extends Migration
+class HotelMigration_102 extends Migration
 {
     /**
      * Define the table structure
@@ -17,15 +17,23 @@ class CityMigration_100 extends Migration
      */
     public function morph()
     {
-        $this->morphTable('city', [
+        $this->morphTable('hotel', [
                 'columns' => [
                     new Column(
                         'id',
                         [
                             'type' => Column::TYPE_INTEGER,
-                            'notNull' => true,
+                            'primary' => true,
                             'autoIncrement' => true,
                             'first' => true
+                        ]
+                    ),
+                    new Column(
+                        'city_id',
+                        [
+                            'type' => Column::TYPE_INTEGER,
+                            'notNull' => true,
+                            'after' => 'id'
                         ]
                     ),
                     new Column(
@@ -34,7 +42,14 @@ class CityMigration_100 extends Migration
                             'type' => Column::TYPE_VARCHAR,
                             'notNull' => true,
                             'size' => 200,
-                            'after' => 'id'
+                            'after' => 'city_id'
+                        ]
+                    ),
+                    new Column(
+                        'status_id',
+                        [
+                            'type' => Column::TYPE_INTEGER,
+                            'after' => 'external_id'
                         ]
                     ),
                     new Column(
@@ -43,30 +58,28 @@ class CityMigration_100 extends Migration
                             'type' => Column::TYPE_VARCHAR,
                             'notNull' => true,
                             'size' => 255,
-                            'after' => 'external_id'
-                        ]
-                    ),
-                    new Column(
-                        'status_id',
-                        [
-                            'type' => Column::TYPE_INTEGER,
-                            'notNull' => true,
-                            'after' => 'title'
+                            'after' => 'status_id'
                         ]
                     )
                 ],
-                'indexes' => [
-                    new Index('city_pkey', ['id'], null)
-                ],
                 'references' => [
                     new Reference(
-                        'city_2_status',
+                        'hotel_2_city',
+                        [
+                            'referencedTable' => 'city',
+                            'columns' => ['city_id'],
+                            'referencedColumns' => ['id'],
+                            'onUpdate' => 'CASCADE',
+                            'onDelete' => 'SET NULL'
+                        ]
+                    ),
+                    new Reference(
+                        'hotel_2_status',
                         [
                             'referencedTable' => 'status',
-                            'referencedSchema' => 'public',
                             'columns' => ['status_id'],
                             'referencedColumns' => ['id'],
-                            'onUpdate' => 'SET NULL',
+                            'onUpdate' => 'CASCADE',
                             'onDelete' => 'SET NULL'
                         ]
                     )

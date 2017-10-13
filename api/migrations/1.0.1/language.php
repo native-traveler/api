@@ -8,7 +8,7 @@ use Phalcon\Mvc\Model\Migration;
 /**
  * Class LanguageMigration_100
  */
-class LanguageMigration_100 extends Migration
+class LanguageMigration_101 extends Migration
 {
     /**
      * Define the table structure
@@ -23,7 +23,7 @@ class LanguageMigration_100 extends Migration
                         'id',
                         [
                             'type' => Column::TYPE_INTEGER,
-                            'notNull' => true,
+                            'primary' => true,
                             'autoIncrement' => true,
                             'first' => true
                         ]
@@ -32,8 +32,17 @@ class LanguageMigration_100 extends Migration
                         'status_id',
                         [
                             'type' => Column::TYPE_INTEGER,
-                            'notNull' => true,
+                            'unsigned' => true,
                             'after' => 'id'
+                        ]
+                    ),
+                    new Column(
+                        'code',
+                        [
+                            'type' => Column::TYPE_VARCHAR,
+                            'notNull' => true,
+                            'size' => 15,
+                            'after' => 'status_id'
                         ]
                     ),
                     new Column(
@@ -41,23 +50,28 @@ class LanguageMigration_100 extends Migration
                         [
                             'type' => Column::TYPE_VARCHAR,
                             'notNull' => true,
-                            'size' => 255,
-                            'after' => 'status_id'
+                            'size' => 100,
+                            'after' => 'code'
+                        ]
+                    ),
+                    new Column(
+                        'title',
+                        [
+                            'type' => Column::TYPE_VARCHAR,
+                            'notNull' => true,
+                            'size' => 100,
+                            'after' => 'name'
                         ]
                     )
-                ],
-                'indexes' => [
-                    new Index('language_pkey', ['id'], null)
                 ],
                 'references' => [
                     new Reference(
                         'language_2_status',
                         [
                             'referencedTable' => 'status',
-                            'referencedSchema' => 'public',
                             'columns' => ['status_id'],
                             'referencedColumns' => ['id'],
-                            'onUpdate' => 'SET NULL',
+                            'onUpdate' => 'CASCADE',
                             'onDelete' => 'SET NULL'
                         ]
                     )
@@ -73,7 +87,7 @@ class LanguageMigration_100 extends Migration
      */
     public function up()
     {
-
+        $this->batchInsert('language', ['code', 'name', 'title']);
     }
 
     /**

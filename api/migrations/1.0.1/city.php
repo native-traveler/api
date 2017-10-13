@@ -6,9 +6,9 @@ use Phalcon\Db\Reference;
 use Phalcon\Mvc\Model\Migration;
 
 /**
- * Class HotelMigration_100
+ * Class CityMigration_100
  */
-class HotelMigration_100 extends Migration
+class CityMigration_101 extends Migration
 {
     /**
      * Define the table structure
@@ -17,23 +17,15 @@ class HotelMigration_100 extends Migration
      */
     public function morph()
     {
-        $this->morphTable('hotel', [
+        $this->morphTable('city', [
                 'columns' => [
                     new Column(
                         'id',
                         [
                             'type' => Column::TYPE_INTEGER,
-                            'notNull' => true,
+                            'primary' => true,
                             'autoIncrement' => true,
                             'first' => true
-                        ]
-                    ),
-                    new Column(
-                        'city_id',
-                        [
-                            'type' => Column::TYPE_INTEGER,
-                            'notNull' => true,
-                            'after' => 'id'
                         ]
                     ),
                     new Column(
@@ -42,15 +34,7 @@ class HotelMigration_100 extends Migration
                             'type' => Column::TYPE_VARCHAR,
                             'notNull' => true,
                             'size' => 200,
-                            'after' => 'city_id'
-                        ]
-                    ),
-                    new Column(
-                        'status_id',
-                        [
-                            'type' => Column::TYPE_INTEGER,
-                            'notNull' => true,
-                            'after' => 'external_id'
+                            'after' => 'id'
                         ]
                     ),
                     new Column(
@@ -59,33 +43,25 @@ class HotelMigration_100 extends Migration
                             'type' => Column::TYPE_VARCHAR,
                             'notNull' => true,
                             'size' => 255,
-                            'after' => 'status_id'
+                            'after' => 'external_id'
+                        ]
+                    ),
+                    new Column(
+                        'status_id',
+                        [
+                            'type' => Column::TYPE_INTEGER,
+                            'after' => 'title'
                         ]
                     )
                 ],
-                'indexes' => [
-                    new Index('hotel_pkey', ['id'], null)
-                ],
                 'references' => [
                     new Reference(
-                        'hotel_2_city',
-                        [
-                            'referencedTable' => 'city',
-                            'referencedSchema' => 'public',
-                            'columns' => ['city_id'],
-                            'referencedColumns' => ['id'],
-                            'onUpdate' => 'SET NULL',
-                            'onDelete' => 'SET NULL'
-                        ]
-                    ),
-                    new Reference(
-                        'hotel_2_status',
+                        'city_2_status',
                         [
                             'referencedTable' => 'status',
-                            'referencedSchema' => 'public',
                             'columns' => ['status_id'],
                             'referencedColumns' => ['id'],
-                            'onUpdate' => 'SET NULL',
+                            'onUpdate' => 'CASCADE',
                             'onDelete' => 'SET NULL'
                         ]
                     )
@@ -113,5 +89,4 @@ class HotelMigration_100 extends Migration
     {
 
     }
-
 }

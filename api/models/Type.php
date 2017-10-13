@@ -35,7 +35,6 @@ class Type extends BaseModel
      */
     public function initialize()
     {
-        $this->setSchema("public");
         $this->setSource("type");
         $this->hasMany('id', 'User', 'type_id', ['alias' => 'User']);
     }

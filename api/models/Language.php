@@ -26,16 +26,29 @@ class Language extends BaseModel
     /**
      *
      * @var string
+     * @Column(type="string", length=15, nullable=false)
+     */
+    public $code;
+
+    /**
+     *
+     * @var string
      * @Column(type="string", length=255, nullable=false)
      */
     public $name;
+
+    /**
+     *
+     * @var string
+     * @Column(type="string", length=255, nullable=false)
+     */
+    public $title;
 
     /**
      * Initialize method for model.
      */
     public function initialize()
     {
-        $this->setSchema("public");
         $this->setSource("language");
         $this->belongsTo('status_id', '\Status', 'id', ['alias' => 'Status']);
     }

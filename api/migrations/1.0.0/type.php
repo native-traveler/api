@@ -23,7 +23,7 @@ class TypeMigration_100 extends Migration
                         'id',
                         [
                             'type' => Column::TYPE_INTEGER,
-                            'notNull' => true,
+                            'primary' => true,
                             'autoIncrement' => true,
                             'first' => true
                         ]
@@ -44,9 +44,6 @@ class TypeMigration_100 extends Migration
                             'after' => 'name'
                         ]
                     )
-                ],
-                'indexes' => [
-                    new Index('type_pkey', ['id'], null)
                 ],
             ]
         );

@@ -35,7 +35,6 @@ class Status extends BaseModel
      */
     public function initialize()
     {
-        $this->setSchema("public");
         $this->setSource("status");
         $this->hasMany('id', 'City', 'status_id', ['alias' => 'City']);
         $this->hasMany('id', 'Hotel', 'status_id', ['alias' => 'Hotel']);
