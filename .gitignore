@@ -5,11 +5,10 @@
 .settings
 nbproject
 
-api/vendor
-api/composer.phar
-api/composer.lock
-api/config/config.local.ini
-api/.phalcon
+/api/vendor
+/api/composer.phar
+/api/composer.lock
+/api/.phalcon
 
 docker-compose.yml
 pha
