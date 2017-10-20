@@ -16,12 +16,12 @@ class RouteCollection
         return $route;
     }
 
-    public function testRoute()
+    public function languageRoute()
     {
         $route = new Collection();
-        $route->setHandler('api\controllers\TestController', true);
-        $route->setPrefix('/test');
-        $route->get('/', 'index');
+        $route->setHandler('api\controllers\LanguageController', true);
+        $route->setPrefix('/language');
+        $route->get('/get-list', 'getList');
 
         return $route;
     }

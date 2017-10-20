@@ -12,6 +12,6 @@
     "minimum-stability": "dev",
     "require": {},
     "require-dev": {
-        "phalcon/devtools": "*"
+        "phalcon/devtools": "^3.2.0"
     }
 }

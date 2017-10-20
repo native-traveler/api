@@ -47,6 +47,6 @@ class AppConfig
 
 
         $this->_app->mount($routes->defaultRoute());
-        $this->_app->mount($routes->testRoute());
+        $this->_app->mount($routes->languageRoute());
     }
 }

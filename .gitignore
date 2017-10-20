@@ -9,6 +9,7 @@ nbproject
 /api/composer.phar
 /api/composer.lock
 /api/.phalcon
+/api/config/config.local.ini
 
 docker-compose.yml
-pha
+database

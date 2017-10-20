@@ -1,5 +1,5 @@
 nginx:
- image: aciden/nginx-1.12
+ image: nginx:1.12-alpine
  ports:
   - 8080:80
  volumes:
@@ -7,24 +7,27 @@ nginx:
   - ./contaners/nginx/conf:/etc/nginx/conf.d
  volumes_from:
   - fpm:rw
- command: nginx -g "daemon off;"
  links:
   - fpm
 fpm:
- image: aciden/php7.0-fpm
+ image: phalconphp/php-fpm:7
  volumes:
   - ./api:/var/www/html:rw
  environment:
   - PHP_MEMORY_LIMIT=512M
   - MAX_UPLOAD=50M
   - PHP_MAX_POST=100M
+ links:
+  - postgres
 postgres:
- image: aciden/postgres-10.0
+ image: postgres:10.0-alpine
+ expose:
+  - 5432
  ports:
   - 5435:5432
  volumes:
-  - ./database/postgres:/var/lib/postgresql/data/pgdata
+  - ./database/postgres:/var/lib/postgresql/data
  environment:
-  PGDATA: /var/lib/postgresql/data/pgdata
   POSTGRES_USER: postgres
   POSTGRES_PASSWORD: 12345
+  POSTGRES_DB: native
